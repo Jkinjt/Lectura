@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Student;
+import Model.Word;
+import Model.WordType;
 
 public interface iStudentDAO  {
 
@@ -18,8 +20,10 @@ public interface iStudentDAO  {
 	public boolean removeStudent();
 
 	public Student searchStudent();
-
-	public void studientResult();
+	
+	public List<Word> studientResult();
+	
+	public List<Word> studientResult(WordType wordType);
 
 	public boolean updateStudient();
 

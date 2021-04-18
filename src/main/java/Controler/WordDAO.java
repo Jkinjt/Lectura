@@ -1,46 +1,89 @@
+/**
+ * 
+ */
 package Controler;
 
-public class WordDAO {
+import java.util.List;
 
-	private int[] words;
+import Model.Word;
+import Model.WordType;
 
-	public void getWords() {
-		throw new UnsupportedOperationException();
+/**
+ * @author Joaquin
+ *
+ */
+public class WordDAO implements iWordDAO {
+
+	@Override
+	public List<Word> getWords() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setWords(int[] words) {
-		this.words = words;
+	@Override
+	public void setWords(List<Word> words) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void addWord() {
-		throw new UnsupportedOperationException();
+	@Override
+	public boolean addWord(Word word) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public void removeWord() {
-		throw new UnsupportedOperationException();
+	@Override
+	public boolean removeWord(String word) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public void searchWord() {
-		throw new UnsupportedOperationException();
+	@Override
+	public Word searchWord(String word) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void upddateWord() {
-		throw new UnsupportedOperationException();
+	@Override
+	public boolean upddateWord(String word) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public void wordType() {
-		throw new UnsupportedOperationException();
+	@Override
+	public WordType wordType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void searchWorByType() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void searchWorByType(WordType wordType) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void searchWordByChar() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void searchWordByChar(char character) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void searchWordbyTypeAndChar() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void searchWordByChar(char character1, char character2) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void searchWordByChar(char character1, char character2, char character3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void searchWordbyTypeAndChar(char character, WordType type) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

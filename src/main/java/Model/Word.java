@@ -2,61 +2,53 @@ package Model;
 
 public class Word {
 
-	private int word;
-	private int letters;
-	private int passed;
-	private int wordType;
+	private String word;
+	private char[] letters;
+	private boolean passed;
+	private WordType wordType;
 	private int id;
 
-	public void getWord() {
-		throw new UnsupportedOperationException();
+	
+
+	public String getWord() {
+		return word;
 	}
 
-	public void setWord(int word) {
+	public void setWord(String word) {
 		this.word = word;
 	}
 
-	public void getLetters() {
-		throw new UnsupportedOperationException();
+	public char[] getLetters() {
+		return letters;
 	}
 
-	public void setLetters(int letters) {
+	public void setLetters(char[] letters) {
 		this.letters = letters;
 	}
 
-	public void getPassed() {
-		throw new UnsupportedOperationException();
+	public boolean isPassed() {
+		return passed;
 	}
 
-	public void setPassed(int passed) {
+	public void setPassed(boolean passed) {
 		this.passed = passed;
 	}
 
-	public void getWordType() {
-		throw new UnsupportedOperationException();
+	public WordType getWordType() {
+		return wordType;
 	}
 
-	public void setWordType(int wordType) {
+	public void setWordType(WordType wordType) {
 		this.wordType = wordType;
 	}
 
-	public Word() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void getId() {
-		throw new UnsupportedOperationException();
+	public int getId() {
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public void getAttribute() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setAttribute(int attribute) {
-		throw new UnsupportedOperationException();
-	}
+	
 }

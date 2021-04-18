@@ -5,11 +5,14 @@ package Controler;
 
 import java.util.List;
 
+import Model.Word;
+import Model.WordType;
+
 /**
  * @author Joaquin
  *
  */
-public class Student implements iStudentDAO {
+public class StudentDAO implements iStudentDAO {
 
 	@Override
 	public List<Model.Student> getStudents() {
@@ -40,13 +43,7 @@ public class Student implements iStudentDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void studientResult() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public boolean updateStudient() {
 		// TODO Auto-generated method stub
@@ -57,6 +54,18 @@ public class Student implements iStudentDAO {
 	public boolean addWord() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Word> studientResult() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Word> studientResult(WordType wordType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
