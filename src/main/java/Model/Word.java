@@ -1,54 +1,37 @@
+/**
+ * 
+ */
 package Model;
 
-public class Word {
+/**
+ * @author Joaquin
+ *
+ */
+public class Word extends WordDB {
 
-	private String word;
 	private char[] letters;
 	private boolean passed;
-	private WordType wordType;
-	private int id;
-
+	String imagen;
 	
-
-	public String getWord() {
-		return word;
-	}
-
-	public void setWord(String word) {
-		this.word = word;
-	}
-
 	public char[] getLetters() {
 		return letters;
 	}
-
 	public void setLetters(char[] letters) {
 		this.letters = letters;
 	}
-
 	public boolean isPassed() {
 		return passed;
 	}
-
 	public void setPassed(boolean passed) {
 		this.passed = passed;
 	}
-
-	public WordType getWordType() {
-		return wordType;
+	public String getImagen() {
+		return imagen;
 	}
-
-	public void setWordType(WordType wordType) {
-		this.wordType = wordType;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
+	
 	
 }

@@ -8,8 +8,7 @@ import Model.WordType;
 
 public interface iWordDAO {
 
-	public List<Word> words=new ArrayList<Word>();
-
+	
 	public List<Word> getWords();
 
 	public void setWords(List<Word> words);

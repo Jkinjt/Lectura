@@ -13,19 +13,46 @@ public interface iStudentDAO  {
 
 	public List<Student> getStudents();
 
+	/*
+	 * @return añade una lista de estudiantes
+	 */
 	public void setStudent(List<Student> Studient);
 
-	public boolean addStudent();
+	/*
+	 * @param estudiante que se quiere añadir a la lista
+	 * @return 
+	 */
+	public boolean addStudent(Student student);
 
-	public boolean removeStudent();
-
-	public Student searchStudent();
+	/*
+	 * @param nombre del estudiante a borrar
+	 */
+	public boolean removeStudent(String name);
 	
-	public List<Word> studientResult();
+	/*
+	 * @param nombre del estudiante a buscar
+	 */
+	public Student searchStudent(String name);
 	
-	public List<Word> studientResult(WordType wordType);
+	/*
+	 * @param nombre del estudiante del que se quieran ver los resultados
+	 * @return porcentaje de aciertos
+	 */
+	public double studientResult(String name);
+	
+	/*
+	 * @param nombre del estudiante y tipo de palabra del que se quieran ver los resultados
+	 * @return porcentaje de aciertos
+	 */
+	public double studientResult(String name, WordType wordType);
 
-	public boolean updateStudient();
+	/*
+	 * @param estudiante que se quiera actualizar
+	 */
+	public boolean updateStudient(Student student);
 
-	public boolean addWord();
+	/*
+	 * @param palabra que se quiera añadir a la lista
+	 */
+	public boolean addWord(Word word);
 }
