@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name ="server")
 public class ServerConnection implements Serializable {
 	
-	
+	private static int count=0;
 	private int id;
 	private String server;
 	private String database;
@@ -16,6 +16,7 @@ public class ServerConnection implements Serializable {
 	private String password;
 	public ServerConnection() {
 		super();
+		id=++count;
 	}
 	/**
 	 * @return the id
