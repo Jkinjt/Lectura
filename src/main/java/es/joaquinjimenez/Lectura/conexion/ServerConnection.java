@@ -82,6 +82,13 @@ public class ServerConnection implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "ServerConnection [id=" + id + ", server=" + server + ", database=" + database + ", username=" + username
+				+ ", password=" + password + "]";
+	}
+	
+	
 	
 	
 

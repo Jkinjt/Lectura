@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.sun.security.ntlm.Server;
 
 import es.joaquinjimenez.Lectura.conexion.ServerConnection;
 
@@ -35,19 +36,20 @@ public static void saveFile(ServerConnection sc) {
 
 		
 	}
-	public static void loadFile(ServerConnection sc) {
+	public static ServerConnection loadFile() {
+		ServerConnection result=null;
 		JAXBContext jaxbContext;
 		try {
 			jaxbContext = JAXBContext.newInstance(ServerConnection.class);
 		    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		     
-		    //We had written this file in marshalling example
-		    ServerConnection newServer = (ServerConnection) jaxbUnmarshaller.unmarshal(new File( "servers.xml" ));
+		    result = (ServerConnection) jaxbUnmarshaller.unmarshal(new File( "servers.xml" ));
 		    
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return result;
 	}
 	
 }

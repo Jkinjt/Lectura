@@ -21,14 +21,16 @@ public class Ejecutable {
 	public static void main(String[] args) {
 
 		ServerConnection sc=new ServerConnection();
-		sc.setServer("jbdc:mysql://localhost");
+		
+		/*sc.setServer("jbdc:mysql://localhost");
 		sc.setDatabase("Prueba");
 		sc.setUsername("root");
 		sc.setPassword("1234");
+		*/
 		
 		
-		WrapperForXML.saveFile(sc);
-		System.out.println("guardado");
+		sc=WrapperForXML.loadFile();
+		System.out.println(sc.toString());
 		
 		
 		
