@@ -1,4 +1,4 @@
-package Model;
+package es.joaquinjimenez.Lectura.model;
 
 import java.util.List;
 import java.util.*;

@@ -1,13 +1,13 @@
 /**
  * 
  */
-package Launch;
+package es.joaquinjimenez.Lectura.launch;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import es.joaquinjimenez.utils.ServerConnection;
-import es.joaquinjimenez.utils.WrapperForXML;
+import es.joaquinjimenez.Lectura.conexion.ServerConnection;
+import es.joaquinjimenez.Lectura.utils.WrapperForXML;
 
 /**
  * @author Joaquin
@@ -26,9 +26,8 @@ public class Ejecutable {
 		sc.setUsername("root");
 		sc.setPassword("1234");
 		
-		List<ServerConnection> servers=new ArrayList<ServerConnection>();
-		servers.add(sc);
-		WrapperForXML.guardaXML(new WrapperForXML(servers));
+		
+		WrapperForXML.saveFile(sc);
 		System.out.println("guardado");
 		
 		

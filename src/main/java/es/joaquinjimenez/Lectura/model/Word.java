@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Model;
+package es.joaquinjimenez.Lectura.model;
 
 /**
  * @author Joaquin
