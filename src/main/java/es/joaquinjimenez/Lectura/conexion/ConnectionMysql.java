@@ -15,7 +15,6 @@ public class ConnectionMysql {
 	private static ConnectionMysql con;
 	
 	
-	//clase que conecta, es una especie de singleton
 		public static ConnectionMysql getConnection(ServerConnection sc) {
 			if(con==null) {
 				conecta(sc);
@@ -23,7 +22,6 @@ public class ConnectionMysql {
 			return con;
 		}
 	public static void conecta(ServerConnection sc) {
-		//hace referencia a la lbreria descargada
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");			
 			con=(ConnectionMysql) DriverManager.getConnection(sc.getServer()+"/"+sc.getDatabase(),  sc.getUsername(), sc.getPassword());
