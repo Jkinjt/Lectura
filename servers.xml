@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <server id="1">
-    <dataBase>Prueba</dataBase>
+    <dataBase>lectura</dataBase>
     <password>1234</password>
     <serverName>jbdc:mysql://localhost</serverName>
     <userName>root</userName>

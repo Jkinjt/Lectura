@@ -22,11 +22,7 @@ public class Ejecutable {
 
 		ServerConnection sc=new ServerConnection();
 		
-		sc.setServer("jbdc:mysql://localhost");
-		sc.setDatabase("Prueba");
-		sc.setUsername("root");
-		sc.setPassword("1234");
-		WrapperForXML.saveFile(sc);
+		
 		
 		
 		

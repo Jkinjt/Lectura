@@ -1,12 +1,25 @@
 package es.joaquinjimenez.Lectura.model;
 
-import java.util.List;
 import java.util.*;
 
 public class Student extends Person {
 
-	private String observations;
-	private List<String> words;
+	protected String observations;
+	protected List<String> words;
+	
+	
+
+	public Student(int id, String name, String surname, GregorianCalendar date, String observations) {
+		super(id, name, surname, date);
+		this.observations = observations;
+	}
+
+	public Student(int id, String name, String surname, GregorianCalendar date, String observations,
+			List<String> words) {
+		super(id, name, surname, date);
+		this.observations = observations;
+		this.words = words;
+	}
 
 	public String getObservations() {
 		throw new UnsupportedOperationException();
