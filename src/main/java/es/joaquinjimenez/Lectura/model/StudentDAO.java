@@ -3,8 +3,17 @@
  */
 package es.joaquinjimenez.Lectura.model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import es.joaquinjimenez.Lectura.conexion.ConnectionMysql;
+import es.joaquinjimenez.Lectura.conexion.ServerConnection;
+import es.joaquinjimenez.Lectura.utils.WrapperForXML;
 
 /**
  * @author Joaquin
@@ -12,7 +21,7 @@ import java.util.List;
  */
 public class StudentDAO extends Student implements iStudentDao {
 
-	
+	private final static  String SELECT="select id, nombre, apellidos, observaciones, fechaNacimiento from alumno where name like";
 	
 	public StudentDAO() {
 		super();
@@ -38,6 +47,29 @@ public class StudentDAO extends Student implements iStudentDao {
 	this.observations=s.getObservations();
 	this.words=s.getWords();
 		
+	}
+	
+	public StudentDAO(String name) {
+		Connection con=ConnectionMysql.getConnection(WrapperForXML.loadFile());
+		if(con!=null) {
+			Statement st;
+			try {
+				st = con.createStatement();
+				String q=SELECT+"'"+name+"'";
+				ResultSet rs =st.executeQuery(q);
+				while(rs.next()) {
+					this.id=rs.getInt("Id");
+					this.name=rs.getString("nombre");
+					Date date=rs.getDate("edad");
+					this.date.setTime(date);
+				}	this.observations=rs.getString("observaciones");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 	}
 	@Override
 	public boolean saveStudent() {
