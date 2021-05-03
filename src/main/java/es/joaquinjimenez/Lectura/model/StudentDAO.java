@@ -21,7 +21,7 @@ import es.joaquinjimenez.Lectura.utils.WrapperForXML;
  */
 public class StudentDAO extends Student implements iStudentDao {
 
-	private final static  String SELECT="select id, nombre, apellidos, observaciones, fechaNacimiento from alumno where name like";
+	private final static  String SELECT="select id, nombre, apellidos, observaciones, fechaNacimiento from alumno where nombre like";
 	
 	public StudentDAO() {
 		super();
@@ -62,7 +62,13 @@ public class StudentDAO extends Student implements iStudentDao {
 					this.name=rs.getString("nombre");
 					Date date=rs.getDate("edad");
 					this.date.setTime(date);
-				}	this.observations=rs.getString("observaciones");
+					if(rs.getString("observaciones").equals(null)) {
+						this.observations=rs.getString("observaciones");	
+						
+					}else {
+						this.observations="";
+					}
+				}	
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

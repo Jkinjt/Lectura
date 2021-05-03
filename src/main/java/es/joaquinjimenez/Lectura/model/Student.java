@@ -7,7 +7,9 @@ public class Student extends Person {
 	protected String observations;
 	protected List<String> words;
 	
-	
+	public Student() {
+		this(-1,"","",new GregorianCalendar(),"");
+	}
 
 	public Student(int id, String name, String surname, GregorianCalendar date, String observations) {
 		super(id, name, surname, date);
@@ -39,9 +41,7 @@ public class Student extends Person {
 		this.words = words;
 	}
 
-	public Student() {
-		throw new UnsupportedOperationException();
-	}
+	
 
 	public void setObservations(int observations) {
 		throw new UnsupportedOperationException();

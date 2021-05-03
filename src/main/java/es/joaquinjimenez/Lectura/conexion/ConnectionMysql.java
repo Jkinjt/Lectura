@@ -20,6 +20,7 @@ public class ConnectionMysql {
 	
 	
 		public static Connection getConnection(ServerConnection sc) {
+			System.out.println(sc.toString());
 			if(con==null) {
 				conecta(sc);
 			}
@@ -27,7 +28,7 @@ public class ConnectionMysql {
 		}
 	public static void conecta(ServerConnection sc) {
 		try {
-			
+			System.out.println("conectando");
 			Class.forName("com.mysql.cj.jdbc.Driver");			
 			connection= DriverManager.getConnection(sc.getServer()+"/"+sc.getDatabase(),  sc.getUsername(), sc.getPassword());
 		} catch (ClassNotFoundException e) {
@@ -38,6 +39,10 @@ public class ConnectionMysql {
 			con=null;
 			e.printStackTrace();
 		}
+		if(con!=null) {
+			System.out.println("esta conectado");	
+		}
+		
 		
 	}
 	

@@ -4,8 +4,7 @@ module es.joaquinjimenez.Lectura {
 	requires java.xml.bind;
 	requires com.sun.xml.txw2;
 	requires java.sql;
-	requires junit;
-	requires org.junit.jupiter.api;
+	
 
     opens es.joaquinjimenez.Lectura to javafx.fxml, java.xml.bind;
     opens es.joaquinjimenez.Lectura.utils to java.xml.bind;

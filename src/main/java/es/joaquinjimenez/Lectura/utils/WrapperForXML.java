@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sun.security.ntlm.Server;
 
 import es.joaquinjimenez.Lectura.conexion.ServerConnection;
 
