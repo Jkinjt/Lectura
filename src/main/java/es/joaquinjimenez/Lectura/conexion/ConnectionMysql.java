@@ -21,26 +21,24 @@ public class ConnectionMysql {
 	
 		public static Connection getConnection(ServerConnection sc) {
 			System.out.println(sc.toString());
-			if(con==null) {
+			if(connection==null) {
 				conecta(sc);
 			}
 			return connection;
 		}
 	public static void conecta(ServerConnection sc) {
 		try {
-			System.out.println("conectando");
 			Class.forName("com.mysql.cj.jdbc.Driver");			
 			connection= DriverManager.getConnection(sc.getServer()+"/"+sc.getDatabase(),  sc.getUsername(), sc.getPassword());
-		} catch (ClassNotFoundException e) {
+		}/* catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} */catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			con=null;
+			connection=null;
 			e.printStackTrace();
 		}
-		if(con!=null) {
-			System.out.println("esta conectado");	
+		if(connection!=null) {
 		}
 		
 		

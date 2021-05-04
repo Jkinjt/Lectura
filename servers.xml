@@ -2,6 +2,6 @@
 <server id="1">
     <dataBase>lectura</dataBase>
     <password>1234</password>
-    <serverName>jbdc:mysql://localhost</serverName>
+    <serverName>jdbc:mysql://localhost</serverName>
     <userName>root</userName>
 </server>

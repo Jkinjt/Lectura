@@ -1,6 +1,7 @@
 package es.joaquinjimenez.Lectura.model;
 
 import java.util.Date;
+import java.time.LocalDate;
 import java.util.*;
 
 public abstract class Person {
@@ -8,11 +9,11 @@ public abstract class Person {
 	protected int id;
 	protected String name;
 	protected String surname;
-	protected GregorianCalendar date;
+	protected LocalDate date;
 	
 	
 	
-	public Person(int id, String name, String surname, GregorianCalendar date) {
+	public Person(int id, String name, String surname, LocalDate date) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -20,7 +21,7 @@ public abstract class Person {
 	}
 	
 	public Person() {
-		this(-1,"","", new GregorianCalendar (0000,0,1));
+		this(-1,"","", LocalDate.now());
 	}
 
 	/**
@@ -68,14 +69,14 @@ public abstract class Person {
 	/**
 	 * @return the date
 	 */
-	public GregorianCalendar getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(GregorianCalendar date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
