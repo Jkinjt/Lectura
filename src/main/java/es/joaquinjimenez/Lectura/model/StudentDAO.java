@@ -34,10 +34,11 @@ public class StudentDAO extends Student implements iStudentDao {
 		// TODO Auto-generated constructor stub
 	}
 
-	public StudentDAO(int id, String name, String surname, LocalDate date, String observations, List<String> words) {
+	public StudentDAO(int id, String name, String surname, LocalDate date, String observations, List<Word> words) {
 		super(id, name, surname, date, observations, words);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public StudentDAO(int id, String name, String surname, LocalDate date, String observations) {
 		super(id, name, surname, date, observations);
@@ -86,6 +87,7 @@ public class StudentDAO extends Student implements iStudentDao {
 
 		}
 	}
+	
 
 	/*
 	 * @param estudiante a borrar
@@ -146,11 +148,10 @@ public class StudentDAO extends Student implements iStudentDao {
 		if (s != null) {
 			int rs = 0;
 			Connection con = ConnectionMysql.getConnection(WrapperForXML.loadFile());
-
 			if (con != null) {
 				try {
 					PreparedStatement q = con.prepareStatement(INSERTUPDATE);
-					if (this.id == -1) {
+					if (this.id >0) {
 						q.setInt(1, (Integer) null);
 					} else {
 						q.setInt(1, s.id);
@@ -161,6 +162,7 @@ public class StudentDAO extends Student implements iStudentDao {
 					q.setString(4, s.observations);
 					q.setDate(5, java.sql.Date.valueOf(s.date));
 					rs = q.executeUpdate();
+					result=true;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -179,11 +181,18 @@ public class StudentDAO extends Student implements iStudentDao {
 			if (con != null) {
 				try {
 					PreparedStatement q = con.prepareStatement(INSERTUPDATE);
-					q.setString(1, this.name);
-					q.setString(2, this.surname);
-					q.setString(3, this.observations);
-					q.setDate(4, java.sql.Date.valueOf(this.date));
+					if (this.id <0) {
+						q.setInt(1, (Integer) null);
+					} else {
+						q.setInt(1, this.id);
+					}
+
+					q.setString(2, this.name);
+					q.setString(3, this.surname);
+					q.setString(4, this.observations);
+					q.setDate(5, java.sql.Date.valueOf(this.date));
 					rs = q.executeUpdate();
+					result=true;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -201,14 +210,22 @@ public class StudentDAO extends Student implements iStudentDao {
 
 	@Override
 	public boolean addWord(Word w) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result=false;
+			if(w!=null) {
+				this.words.add(w);
+				result=true;
+			}
+		return result;
 	}
 
 	@Override
 	public Student searchStudent(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Student result=new Student();
+		if(id>0) {
+			result=new StudentDAO(id);
+			
+		}
+		return result;
 	}
 
 	

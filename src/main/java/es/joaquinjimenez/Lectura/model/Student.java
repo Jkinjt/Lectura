@@ -6,7 +6,7 @@ import java.util.*;
 public class Student extends Person {
 
 	protected String observations;
-	protected List<String> words;
+	protected List<Word> words;
 	
 	public Student() {
 		this(-1,"","",LocalDate.now(),"");
@@ -21,7 +21,7 @@ public class Student extends Person {
 	}
 
 	public Student(int id, String name, String surname, LocalDate date, String observations,
-			List<String> words) {
+			List<Word> words) {
 		super(id, name, surname, date);
 		this.observations = observations;
 		this.words = words;
@@ -37,11 +37,11 @@ public class Student extends Person {
 
 	
 
-	public List<String> getWords() {
+	public List<Word> getWords() {
 		return words;
 	}
 
-	public void setWords(List<String> words) {
+	public void setWords(List<Word> words) {
 		this.words = words;
 	}
 

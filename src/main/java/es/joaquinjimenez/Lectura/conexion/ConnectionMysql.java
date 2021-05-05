@@ -20,7 +20,6 @@ public class ConnectionMysql {
 	
 	
 		public static Connection getConnection(ServerConnection sc) {
-			System.out.println(sc.toString());
 			if(connection==null) {
 				conecta(sc);
 			}

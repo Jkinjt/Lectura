@@ -32,6 +32,7 @@ public class Ejecutable {
 		StudentDAO sd=new StudentDAO(1);
 		System.out.println(sd.toString());
 		*/
+		/*
 		List<Student> ls=StudentDAO.searchStudent("Rosa");
 		System.out.println(ls.toString());
 		
@@ -39,11 +40,16 @@ public class Ejecutable {
 				LocalDate.of(2015, 5, 15),"Sin escolarizar");
 		ls.add(s);
 		System.out.println(ls.toString());
+		*/
 		/*
 		StudentDAO sDAO=new StudentDAO(s);
 		sDAO.saveStudent(s);
 		*/
 		
+		
+		
+		
 	}
+	
 
 }
