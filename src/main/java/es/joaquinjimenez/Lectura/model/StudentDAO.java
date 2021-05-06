@@ -27,7 +27,8 @@ public class StudentDAO extends Student implements iStudentDao {
 	private final static String SELECTBYNAME = "select id, nombre, apellidos, observaciones, fechaNacimiento from alumno where nombre like ";
 	private static final String DELETE = "DELETE FROM alumno WHERE id=";
 	private static final String INSERTUPDATE = "INSERT INTO `alumno` "
-			+ "(`Id`, `nombre`, `apellidos`, `observaciones`, `fechaNacimiento`) " + "VALUES (?, ?, ?, ?, ?)";
+			+ "(`Id`, `nombre`, `apellidos`, `observaciones`, `fechaNacimiento`) " + "VALUES (?, ?, ?, ?, ?)"
+			+ "ON DUPLICATE KEY UPDATE nombre=?,apellidos=?, observaciones=?, fechaNacimiento=?";
 
 	public StudentDAO() {
 		super();
@@ -161,6 +162,10 @@ public class StudentDAO extends Student implements iStudentDao {
 					q.setString(3, s.surname);
 					q.setString(4, s.observations);
 					q.setDate(5, java.sql.Date.valueOf(s.date));
+					q.setString(6, s.name);
+					q.setString(7, s.surname);
+					q.setString(8, s.observations);
+					q.setDate(9, java.sql.Date.valueOf(s.date));
 					rs = q.executeUpdate();
 					result=true;
 				} catch (SQLException e) {
@@ -191,6 +196,10 @@ public class StudentDAO extends Student implements iStudentDao {
 					q.setString(3, this.surname);
 					q.setString(4, this.observations);
 					q.setDate(5, java.sql.Date.valueOf(this.date));
+					q.setString(6, this.name);
+					q.setString(7, this.surname);
+					q.setString(8, this.observations);
+					q.setDate(9, java.sql.Date.valueOf(this.date));
 					rs = q.executeUpdate();
 					result=true;
 				} catch (SQLException e) {

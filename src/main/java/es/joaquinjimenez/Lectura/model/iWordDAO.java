@@ -13,6 +13,10 @@ public interface iWordDAO {
 
 	public boolean saveWord();
 	public boolean removeWord();
-	public List<Word> searchType();
-	public List<Word> searchForStudent(int id);
+	public static List<Word> searchType(WordType wt) {
+		return null;
+	}
+	public static List<Word> searchForStudent(int id) {
+		return null;
+	}
 }

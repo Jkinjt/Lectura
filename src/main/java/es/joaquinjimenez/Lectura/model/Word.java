@@ -34,6 +34,10 @@ public class Word extends WordDB {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void setWord(String word) {
+		this.word = word;
+		setLetters(word.toCharArray());
+	}
 	public char[] getLetters() {
 		return letters;
 	}
@@ -51,6 +55,8 @@ public class Word extends WordDB {
 		return "Word [, id=" + id + ", word=" + word
 				+ ", wordType=" + wordType + "letters=" + Arrays.toString(letters) + ", passed=" + passed + "]";
 	}
+	
+	
 	
 	
 	

@@ -32,6 +32,10 @@ public class Ejecutable {
 		w1.saveWord();
 		WordDAO w=new WordDAO(6);
 		System.out.println(w.toString());
+		w.setWord("chosa");
+		w.saveWord();
+		w1=new WordDAO(6);
+		System.out.println(w1.toString());
 		w1.removeWord();
 		
 		

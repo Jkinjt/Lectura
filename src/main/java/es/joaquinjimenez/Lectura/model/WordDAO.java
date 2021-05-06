@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import es.joaquinjimenez.Lectura.conexion.ConnectionMysql;
@@ -20,9 +21,11 @@ import es.joaquinjimenez.Lectura.utils.WrapperForXML;
 public class WordDAO extends Word implements iWordDAO {
 
 	private final static String SELECT = "SELECT `Id`, `nombre`, `tipo` FROM `palabra` WHERE Id=";
+	private final static String SELECTTYPE = "SELECT `Id`, `nombre`, `tipo` FROM `palabra` WHERE tipo=";
 	private static final String PASSWORDS = "select s.Id_Alumno, s.Id_Palabra, s.superado, p.nombre, p.tipo"
 			+ " from supera s, palabra p where s.Id_palabra=p.Id and Id_Alumno=";
-	private static final String INSERTUPDATE = "INSERT INTO `palabra` (`Id`, `nombre`, `tipo`) VALUES (?, ?, ?)";
+	private static final String INSERTUPDATE = "INSERT INTO `palabra` (`Id`, `nombre`, `tipo`) VALUES (?, ?, ?)"
+			+ "ON DUPLICATE KEY UPDATE nombre=?,tipo=?";
 	private static final String DELETE = "DELETE FROM `palabra` WHERE Id=";
 
 	/**
@@ -133,6 +136,8 @@ public class WordDAO extends Word implements iWordDAO {
 						throw new IllegalArgumentException("Unexpected value: " + this.wordType);
 					}
 					q.setInt(3, type);
+					q.setString(4, this.word);
+					q.setInt(5, type);
 					rs = q.executeUpdate();
 					result = true;
 				} catch (SQLException e) {
@@ -182,6 +187,8 @@ public class WordDAO extends Word implements iWordDAO {
 						throw new IllegalArgumentException("Unexpected value: " + this.wordType);
 					}
 					q.setInt(3, type);
+					q.setString(4, w.word);
+					q.setInt(5, type);
 					rs = q.executeUpdate();
 					result = true;
 				} catch (SQLException e) {
@@ -238,16 +245,110 @@ public class WordDAO extends Word implements iWordDAO {
 		return result;
 	}
 
-	@Override
-	public List<Word> searchType() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public static List<Word> searchType(WordType wt) {
+		List<Word> result=new ArrayList<Word>();
+		if(wt!=null) {
+			Connection con = ConnectionMysql.getConnection(WrapperForXML.loadFile());
+			if (con != null) {
+				Statement st;
+				try {
+					st = con.createStatement();
+					int type;
+					switch (wt) {
+					case direct: {
+						type=1;
+						break;
+					}
+					case reverse: {
+						type=2;
+						break;
+					}
+					case stuck: {
+						type=3;
+						break;
+					}
+					case  mixed: {
+						type=4;
+						break;
+					}
+					default:
+						throw new IllegalArgumentException("Unexpected value: " + wt);
+					}
+					String q = SELECTTYPE +"'"+type+"'";
+					ResultSet rs = st.executeQuery(q);
+					
+					while (rs.next()) {
+						Word w=new Word();
+						w.setId(rs.getInt("Id"));
+						w.setWord(rs.getString("nombre"));
+						w.setWordType(wt);
+						result.add(w);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
-	@Override
-	public List<Word> searchForStudent(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public static List<Word> searchForStudent(int id) {
+		List<Word> result = new ArrayList<Word>();
+		if (id>0) {
+			Connection con = ConnectionMysql.getConnection(WrapperForXML.loadFile());
+			if (con != null) {
+				Statement st;
+				try {
+					st = con.createStatement();
+					String q = PASSWORDS +"'"+id+"'";
+					ResultSet rs = st.executeQuery(q);
+					
+					while (rs.next()) {
+						Word w=new Word();
+						w.setId(rs.getInt("s.Id_palabra"));
+						boolean pass;
+						if(rs.getInt("s.superado")==1) {
+							w.setPassed(true);	
+						}else {
+							w.setPassed(false);
+						}
+						
+						w.setWord(rs.getString("p.nombre"));
+						int type = rs.getInt("p.tipo");
+						switch (type) {
+						case 1: {
+							w.setWordType(WordType.direct);
+							break;
+						}
+						case 2: {
+							w.setWordType(WordType.reverse);
+							break;
+						}
+						case 3: {
+							w.setWordType(WordType.stuck);
+							break;
+						}
+						case 4: {
+							w.setWordType(WordType.mixed);
+							break;
+						}
+						default:
+							throw new IllegalArgumentException("Unexpected value: " + type);
+						}
+						result.add(w);
+						
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return result;
 	}
 
 }

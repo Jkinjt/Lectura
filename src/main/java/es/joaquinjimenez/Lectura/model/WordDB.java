@@ -50,6 +50,21 @@ public abstract class WordDB {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public boolean equals(Object obj) {
+		boolean result=false;
+		if(obj!=null) {
+			if(obj==this) {
+				result=true;
+			}
+			else if(obj instanceof WordDB) {
+				WordDB p=(WordDB)obj;
+				if(p.getId()==this.id) {
+					result=true;
+				}
+			}
+		}
+		return result;
+	}
 
 	
 }
