@@ -2,11 +2,31 @@ package es.joaquinjimenez.Lectura.model;
 
 public abstract class WordDB {
 
-	private String word;	
-	private WordType wordType;
-	private int id;
+	protected int id;
+	protected String word;	
+	protected WordType wordType;
 	
+	public WordDB() {
+		this.id=-1;
+		this.word="";
+		this.wordType=WordType.direct;
+	}
+			
+	public WordDB(int id, String word, WordType wordType) {
+		super();
+		this.id = id;
+		this.word = word;
+		this.wordType = wordType;
+	}
+	public WordDB(String word, WordType wordType) {
+		super();
+		this.id =-1;
+		this.word = word;
+		this.wordType = wordType;
+	}
+
 	
+
 	public String getWord() {
 		return word;
 	}

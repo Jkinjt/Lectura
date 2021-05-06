@@ -3,15 +3,36 @@
  */
 package es.joaquinjimenez.Lectura.model;
 
+import java.util.Arrays;
+
 /**
  * @author Joaquin
  *
  */
 public class Word extends WordDB {
 
-	private char[] letters;
-	private boolean passed;
-	String imagen;
+	protected char[] letters;
+	protected boolean passed;
+	
+	
+	public Word() {
+		super();
+		setLetters(word.toCharArray());
+		this.passed=false;
+		// TODO Auto-generated constructor stub
+	}
+	public Word(int id, String word, WordType wordType) {
+		super(id, word, wordType);
+		setLetters(word.toCharArray());
+		this.passed=false;
+		// TODO Auto-generated constructor stub
+	}
+	public Word( String word, WordType wordType) {
+		super(word, wordType);
+		setLetters(word.toCharArray());
+		this.passed=false;
+		// TODO Auto-generated constructor stub
+	}
 	
 	public char[] getLetters() {
 		return letters;
@@ -25,12 +46,16 @@ public class Word extends WordDB {
 	public void setPassed(boolean passed) {
 		this.passed = passed;
 	}
-	public String getImagen() {
-		return imagen;
+	@Override
+	public String toString() {
+		return "Word [, id=" + id + ", word=" + word
+				+ ", wordType=" + wordType + "letters=" + Arrays.toString(letters) + ", passed=" + passed + "]";
 	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
+	
+	
+	
+	
+	
 	
 	
 	
