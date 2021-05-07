@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class WordDAO extends Word implements iWordDAO {
 	private static final String INSERTUPDATE = "INSERT INTO `palabra` (`Id`, `nombre`, `tipo`) VALUES (?, ?, ?)"
 			+ "ON DUPLICATE KEY UPDATE nombre=?,tipo=?";
 	private static final String DELETE = "DELETE FROM `palabra` WHERE Id=";
-
+	private static final String DELETERELATIONSHIP="DELETE FROM supera WHERE Id_Palabra=";
 	/**
 	 * 
 	 */
@@ -51,7 +52,11 @@ public class WordDAO extends Word implements iWordDAO {
 		super(w.id, w.word, w.wordType);
 	}
 
-
+	/*
+	 * crea la palabra con la informacion de la base de datos
+	 * @param id de la palabra en la base de datos
+	 * 
+	 */
 	public WordDAO(int id) {
 		if (id > 0) {
 			Connection con = ConnectionMysql.getConnection(WrapperForXML.loadFile());
@@ -97,6 +102,9 @@ public class WordDAO extends Word implements iWordDAO {
 		}
 	}
 
+	/*
+	 * guarda la palabra en la base de datos
+	 */
 	@Override
 	public boolean saveWord() {
 		boolean result = false;
@@ -108,7 +116,7 @@ public class WordDAO extends Word implements iWordDAO {
 				try {
 					PreparedStatement q = con.prepareStatement(INSERTUPDATE);
 					if (this.id < 0) {
-						q.setInt(1, (Integer) null);
+						q.setNull(1, Types.NULL);
 					} else {
 						q.setInt(1, this.id);
 					}
@@ -149,6 +157,7 @@ public class WordDAO extends Word implements iWordDAO {
 		return result;
 	}
 	
+	
 	public boolean saveWord(Word w) {
 		boolean result = false;
 		if (w != null) {
@@ -159,7 +168,7 @@ public class WordDAO extends Word implements iWordDAO {
 				try {
 					PreparedStatement q = con.prepareStatement(INSERTUPDATE);
 					if (w.id < 0) {
-						q.setInt(1, (Integer) null);
+						q.setNull(1, Types.NULL);
 					} else {
 						q.setInt(1, w.id);
 					}
@@ -200,6 +209,9 @@ public class WordDAO extends Word implements iWordDAO {
 		return result;
 	}
 
+	/*
+	 * Borra la palabra de la base de datos
+	 */
 	@Override
 	public boolean removeWord() {
 		boolean result = false;
@@ -210,7 +222,10 @@ public class WordDAO extends Word implements iWordDAO {
 				Statement st;
 				try {
 					st = con.createStatement();
-					String q = DELETE + this.id;
+					//primero borra las tuplas que de la tabla de enmedio tenga
+					String q = DELETERELATIONSHIP + this.id;
+					st.executeUpdate(q);
+					q = DELETE + this.id;
 					st.executeUpdate(q);
 					result = true;
 
@@ -231,8 +246,11 @@ public class WordDAO extends Word implements iWordDAO {
 			if (con != null) {
 				Statement st;
 				try {
+					
 					st = con.createStatement();
-					String q = DELETE + w.getId();
+					String q = DELETERELATIONSHIP + w.getId();
+					st.executeUpdate(q);
+					q = DELETE + w.getId();
 					st.executeUpdate(q);
 					result = true;
 
@@ -245,7 +263,10 @@ public class WordDAO extends Word implements iWordDAO {
 		return result;
 	}
 
-	
+	/*
+	 * devuelve las palabras de un tipo
+	 * @param tipo de palabra que se quiera buscar
+	 */
 	public static List<Word> searchType(WordType wt) {
 		List<Word> result=new ArrayList<Word>();
 		if(wt!=null) {
@@ -294,7 +315,10 @@ public class WordDAO extends Word implements iWordDAO {
 		return result;
 	}
 
-	
+	/*
+	 * @param id del alumno del alumno
+	 * @return lista de las palabras hechas por el alumno
+	 */
 	public static List<Word> searchForStudent(int id) {
 		List<Word> result = new ArrayList<Word>();
 		if (id>0) {
@@ -351,4 +375,5 @@ public class WordDAO extends Word implements iWordDAO {
 		return result;
 	}
 
+	
 }

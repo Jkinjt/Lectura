@@ -14,10 +14,12 @@ public class Student extends Person {
 	public Student( String name, String surname, LocalDate date, String observations) {
 		super(0, name, surname, date);
 		this.observations = observations;
+		this.words=new ArrayList<Word>();
 	}
 	public Student(int id, String name, String surname, LocalDate date, String observations) {
 		super(id, name, surname, date);
 		this.observations = observations;
+		this.words=new ArrayList<Word>();
 	}
 
 	public Student(int id, String name, String surname, LocalDate date, String observations,

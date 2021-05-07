@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLType;
 import java.sql.Statement;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -26,9 +28,13 @@ public class StudentDAO extends Student implements iStudentDao {
 	private final static String SELECT = "select id, nombre, apellidos, observaciones, fechaNacimiento from alumno where id=";
 	private final static String SELECTBYNAME = "select id, nombre, apellidos, observaciones, fechaNacimiento from alumno where nombre like ";
 	private static final String DELETE = "DELETE FROM alumno WHERE id=";
+	private static final String DELETERELATIONSHIP="DELETE FROM supera WHERE Id_Alumno=";
 	private static final String INSERTUPDATE = "INSERT INTO `alumno` "
 			+ "(`Id`, `nombre`, `apellidos`, `observaciones`, `fechaNacimiento`) " + "VALUES (?, ?, ?, ?, ?)"
 			+ "ON DUPLICATE KEY UPDATE nombre=?,apellidos=?, observaciones=?, fechaNacimiento=?";
+	private static final String INSERTRELATION="INSERT INTO `supera`(`Id_Alumno`, `Id_Palabra`, `superado`)"
+			+ " VALUES (?,?,?) "
+			+ "ON DUPLICATE KEY UPDATE `superado`=?";
 
 	public StudentDAO() {
 		super();
@@ -43,6 +49,7 @@ public class StudentDAO extends Student implements iStudentDao {
 
 	public StudentDAO(int id, String name, String surname, LocalDate date, String observations) {
 		super(id, name, surname, date, observations);
+		
 		// TODO Auto-generated constructor stub
 	}
 
@@ -105,7 +112,9 @@ public class StudentDAO extends Student implements iStudentDao {
 				Statement st;
 				try {
 					st = con.createStatement();
-					String q = DELETE + s.getId();
+					String q = DELETERELATIONSHIP + s.getId();
+					st.executeUpdate(q);
+					q = DELETE + s.getId();
 					st.executeUpdate(q);
 					result = true;
 
@@ -129,7 +138,9 @@ public class StudentDAO extends Student implements iStudentDao {
 				Statement st;
 				try {
 					st = con.createStatement();
-					String q = DELETE + this.id;
+					String q = DELETERELATIONSHIP + this.id;
+					st.executeUpdate(q);
+					q = DELETE + this.id;
 					st.executeUpdate(q);
 					result = true;
 
@@ -152,8 +163,8 @@ public class StudentDAO extends Student implements iStudentDao {
 			if (con != null) {
 				try {
 					PreparedStatement q = con.prepareStatement(INSERTUPDATE);
-					if (this.id >0) {
-						q.setInt(1, (Integer) null);
+					if (this.id <0) {
+						q.setNull(1, Types.NULL);
 					} else {
 						q.setInt(1, s.id);
 					}
@@ -167,6 +178,21 @@ public class StudentDAO extends Student implements iStudentDao {
 					q.setString(8, s.observations);
 					q.setDate(9, java.sql.Date.valueOf(s.date));
 					rs = q.executeUpdate();
+					for (Word word : words) {
+						q=con.prepareStatement(INSERTRELATION);
+						q.setInt(1, s.getId());
+						q.setInt(2, word.getId());
+						if(word.passed) {
+							q.setInt(3, 1);
+							q.setInt(4, 1);
+						}else {
+							q.setInt(3, 0);
+							q.setInt(4, 0);
+						}
+						rs = q.executeUpdate();
+						
+					}
+					
 					result=true;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -187,7 +213,7 @@ public class StudentDAO extends Student implements iStudentDao {
 				try {
 					PreparedStatement q = con.prepareStatement(INSERTUPDATE);
 					if (this.id <0) {
-						q.setInt(1, (Integer) null);
+						q.setNull(1, Types.NULL);
 					} else {
 						q.setInt(1, this.id);
 					}
@@ -201,6 +227,20 @@ public class StudentDAO extends Student implements iStudentDao {
 					q.setString(8, this.observations);
 					q.setDate(9, java.sql.Date.valueOf(this.date));
 					rs = q.executeUpdate();
+					for (Word word : words) {
+						q=con.prepareStatement(INSERTRELATION);
+						q.setInt(1, this.id);
+						q.setInt(2, word.getId());
+						if(word.passed) {
+							q.setInt(3, 1);
+							q.setInt(4, 1);
+						}else {
+							q.setInt(3, 0);
+							q.setInt(4, 0);
+						}
+						rs = q.executeUpdate();
+						
+					}
 					result=true;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
