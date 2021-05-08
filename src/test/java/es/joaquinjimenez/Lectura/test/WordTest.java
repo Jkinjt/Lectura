@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import es.joaquinjimenez.Lectura.model.StudentDAO;
 import es.joaquinjimenez.Lectura.model.Word;
 import es.joaquinjimenez.Lectura.model.WordDAO;
 import es.joaquinjimenez.Lectura.model.WordDB;
@@ -25,44 +26,45 @@ class WordTest {
 	@Test
 	public void saveTest() {
 		WordDAO w=new WordDAO(3,"aveja", WordType.direct);
-		w.saveWord();
+		assertTrue(w.saveWord());
 		System.out.println(w.toString());
 		assertEquals(w,new WordDAO(3));
 		w.setWord("abeja");
-		w.saveWord();
+		assertTrue(w.saveWord());
 		System.out.println(w.toString());
-		
 		assertEquals(w,new WordDAO(3));
-		
 		
 	}
 	@Test
 	public void removeTest() {
 		WordDAO w=new WordDAO(3,"abeja", WordType.direct);
 		assertEquals(w, new WordDAO(3));
-		w.removeWord();
+		StudentDAO s1=new StudentDAO(11);
+		s1.addWord(w);
+		s1.saveStudent();
+		assertTrue(w.removeWord());
 		assertNotEquals(w, new WordDAO(3));
 		
 	}
 	@Test
 	public void searchTypeTest() {
-		WordDAO w1=new WordDAO(1);
 		WordDAO w2=new WordDAO(2);
-		WordDAO w3=new WordDAO(5);
 		List<Word> lw=new ArrayList<Word>();
-		lw.add(w1); lw.add(w2);lw.add(w3);
-		List<Word> lt=w1.searchType(WordType.direct);
+		lw.add(w2);
+		List<Word> lt=WordDAO.searchType(WordType.mixed);
 		assertEquals(lw, lt);
 		System.out.println(lt.toString());
-	}@Test
+	}
+	@Test
 	public void searchForStudentTest() {
 		WordDAO w2=new WordDAO(2);
 		List<Word> lw=new ArrayList<Word>();
 		lw.add(w2);
-		List<Word> lr=WordDAO.searchForStudent(1);
+		List<Word> lr=WordDAO.searchForStudent(2);
 		assertEquals(lw, lr);
 		System.out.println(lr.toString());
 	}
+	
 	
 	
 }

@@ -46,7 +46,12 @@ public class StudentDAO extends Student implements iStudentDao {
 		// TODO Auto-generated constructor stub
 	}
 	
-
+	public StudentDAO(String name, String surname, LocalDate date, String observations) {
+		super(name, surname, date, observations);
+		
+		// TODO Auto-generated constructor stub
+	}
+	
 	public StudentDAO(int id, String name, String surname, LocalDate date, String observations) {
 		super(id, name, surname, date, observations);
 		

@@ -46,14 +46,11 @@ public class Student extends Person {
 	public void setWords(List<Word> words) {
 		this.words = words;
 	}
-
-	
-
-	public void setObservations(int observations) {
-		throw new UnsupportedOperationException();
+	@Override
+	public String toString() {
+		return "Student [observations=" + observations + ", words=" + words + ", id=" + id + ", name=" + name
+				+ ", surname=" + surname + ", date=" + date + "]";
 	}
-	
-	
 
 	
 }
