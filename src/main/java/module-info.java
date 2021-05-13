@@ -4,6 +4,7 @@ module es.joaquinjimenez.Lectura {
 	requires java.xml.bind;
 	requires com.sun.xml.txw2;
 	requires java.sql;
+	requires javafx.base;
 	
 
     opens es.joaquinjimenez.Lectura to javafx.fxml, java.xml.bind;

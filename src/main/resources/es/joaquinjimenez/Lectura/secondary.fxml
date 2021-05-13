@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.joaquinjimenez.Lectura.SecondaryController">
-    <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.joaquinjimenez.Lectura.SecondaryController">
+   <children>
+      <SplitPane dividerPositions="0.5" layoutX="200.0" layoutY="120.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="303.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="14.0" text="Nombre del alumno" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="search" layoutX="117.0" layoutY="149.0" mnemonicParsing="false" onAction="#searchStudent" text="Buscar" />
+                  <TextField fx:id="name" layoutX="72.0" layoutY="83.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="studenTable" layoutX="50.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="nameColum" text="Nombre" />
+                      <TableColumn fx:id="surnameColum" minWidth="0.0" prefWidth="97.0" text="Apellidos" />
+                        <TableColumn fx:id="observationColum" prefWidth="121.0" text="Observaciones" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Button fx:id="back" layoutX="517.0" layoutY="329.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Atrras" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <Button layoutX="265.0" layoutY="352.0" mnemonicParsing="false" onAction="#switchToQuestion" text="Empezar" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="265.0" />
+   </children>
+</AnchorPane>

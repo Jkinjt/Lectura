@@ -302,7 +302,7 @@ public class StudentDAO extends Student implements iStudentDao {
 						java.sql.Date date = rs.getDate("fechaNacimiento");
 						s.setDate(date.toLocalDate());
 						
-						if (rs.getString("observaciones") != null) {
+						if (rs.getString("observaciones") == null) {
 							s.setObservations("");
 
 						} else {
