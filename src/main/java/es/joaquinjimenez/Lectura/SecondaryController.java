@@ -7,16 +7,20 @@ import es.joaquinjimenez.Lectura.model.Student;
 import es.joaquinjimenez.Lectura.model.StudentDAO;
 import es.joaquinjimenez.Lectura.model.Word;
 import es.joaquinjimenez.Lectura.model.WordDAO;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class SecondaryController {
+	private Student student;
 	@FXML
 	private Button back;
 	@FXML
@@ -59,18 +63,20 @@ public class SecondaryController {
 			   return v;
 		   });
 	   }
-	//para pasar el estudiante seleccionado a la siguiente pantalla
-	private void setStudent() {
-		studenTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
-			Question.setStudent(newValue);
-			
-		});
-	}
+	
 	
 	@FXML
     private void switchToQuestion() throws IOException {
+       //se carga el fxml de la pantalla a cargar
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("question.fxml"));
+        Parent root=loader.load();
+        //se obtiene la clase que controla la vista a cargar
+        Question question=loader.getController();
+        studenTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
+        	student=newValue;
+		}); 
+        question.start(studenTable);
         App.setRoot("question");
-        setStudent();
     }  
     @FXML
     private void switchToPrimary() throws IOException {

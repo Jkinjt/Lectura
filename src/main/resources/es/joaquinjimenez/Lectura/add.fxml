@@ -11,12 +11,16 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="addStudent" layoutX="101.0" layoutY="137.0" mnemonicParsing="false" onAction="#switchToAddStudent" text="Añadir alumno" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="136.0" />
+                  <Button fx:id="addStudent" layoutX="101.0" layoutY="137.0" mnemonicParsing="false" onAction="#switchToAddStudent" text="Añadir alumno" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="50.0" />
+                  <Button layoutX="122.0" layoutY="137.0" mnemonicParsing="false" text="Modificar alumno" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="125.0" />
+                  <Button layoutX="122.0" layoutY="217.0" mnemonicParsing="false" text="Borrar alumno" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="236.0" prefWidth="271.0">
                <children>
-                  <Button fx:id="addWord" layoutX="101.0" layoutY="137.0" mnemonicParsing="false" onAction="#switchToAddWord" text="Añadir palabra" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="136.0" />
+                  <Button fx:id="addWord" layoutX="101.0" layoutY="137.0" mnemonicParsing="false" onAction="#switchToAddWord" text="Añadir palabra" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="50.0" />
+                  <Button layoutX="122.0" layoutY="124.0" mnemonicParsing="false" text="Modificar palabra" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="125.0" />
+                  <Button layoutX="122.0" layoutY="230.0" mnemonicParsing="false" text="Borrar palabra" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
                </children>
             </AnchorPane>
         </items>
