@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,29 +16,66 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="303.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="14.0" text="Nombre del alumno" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="search" layoutX="117.0" layoutY="149.0" mnemonicParsing="false" onAction="#searchStudent" text="Buscar" />
-                  <TextField fx:id="name" layoutX="72.0" layoutY="83.0" />
+                  <SplitPane dividerPositions="0.5" layoutX="54.0" layoutY="98.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Nombre del alumno" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="search" mnemonicParsing="false" onAction="#searchStudent" text="Buscar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" />
+                              <TextField fx:id="name" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="50.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TableView fx:id="studenTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                    <TableColumn fx:id="idColum" prefWidth="69.0" text="Id" />
+                                  <TableColumn fx:id="nameColum" prefWidth="104.0" text="Nombre" />
+                                  <TableColumn fx:id="surnameColum" minWidth="0.0" prefWidth="125.0" text="Apellidos" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="studenTable" layoutX="50.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="nameColum" text="Nombre" />
-                      <TableColumn fx:id="surnameColum" minWidth="0.0" prefWidth="97.0" text="Apellidos" />
-                        <TableColumn fx:id="observationColum" prefWidth="121.0" text="Observaciones" />
-                    </columns>
-                  </TableView>
+                  <SplitPane dividerPositions="0.5" layoutX="68.0" layoutY="49.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TextField fx:id="id" layoutX="72.0" layoutY="60.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="50.0" />
+                              <Label alignment="CENTER" layoutX="133.0" layoutY="14.0" text="Id alumno" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="setStudent" layoutX="121.0" layoutY="105.0" mnemonicParsing="false" onAction="#setStudent" text="Añadir" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="133.0" layoutY="14.0" text="Tipo de palabras" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="20.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="wordType" layoutX="72.0" layoutY="72.0" prefWidth="150.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <Button fx:id="back" layoutX="517.0" layoutY="329.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Atrras" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <Button layoutX="265.0" layoutY="352.0" mnemonicParsing="false" onAction="#switchToQuestion" text="Empezar" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="265.0" />
+      <Button fx:id="back" layoutX="517.0" layoutY="329.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Atras" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <Button fx:id="star" layoutX="265.0" layoutY="352.0" mnemonicParsing="false" onAction="#switchToQuestion" text="Empezar" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="265.0" />
    </children>
 </AnchorPane>

@@ -87,6 +87,7 @@ public class result {
 		
 		
 	}
+	
 	@FXML
 	private void configureStudent() {
 		   nameColum.setCellValueFactory(eachStudent->{
