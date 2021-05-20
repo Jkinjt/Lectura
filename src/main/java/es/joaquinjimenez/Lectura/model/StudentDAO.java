@@ -282,6 +282,11 @@ public class StudentDAO extends Student implements iStudentDao {
 		return result;
 	}
 
+	/*
+	 * Metodo para comprobar si existe un estudiante con un nombre concreto
+	 * @param nombre del estudiante 
+	 * @return lista de estudiantes con un nombre concreto
+	 */
 	
 	public static List<Student> searchStudent(String name) {
 		List<Student> result = new ArrayList<Student>();

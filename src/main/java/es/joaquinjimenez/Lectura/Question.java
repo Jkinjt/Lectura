@@ -165,8 +165,8 @@ public class Question implements Initializable {
 
 	@FXML
 	private void switchToQuestion() throws IOException {
-		StudentDAO s = (StudentDAO) student;
-		s.saveStudent();
+		
+		
 		App.setRoot("secondary");
 	}
 
